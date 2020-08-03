@@ -1,0 +1,12 @@
+<!--components/myapproval/tabs/tabs.wxml-->
+<van-tabs active="{{ active }}" bind:change="onChangeTabs">
+  <van-tab title="我的发起" name="myLaunch">
+    <Approvallist arrList="{{myLaunchArr}}"></Approvallist>
+  </van-tab>
+  <van-tab title="已审批" name="myApprovalOK">
+    <Approvallist arrList="{{approval}}"></Approvallist>
+  </van-tab>
+  <van-tab title="待审批" name="myApprovalNo">
+    <Approvallist arrList="{{pendingApproval}}"></Approvallist>
+  </van-tab>
+</van-tabs>

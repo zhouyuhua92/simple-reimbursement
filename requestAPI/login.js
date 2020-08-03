@@ -1,11 +1,11 @@
 import request from './requestFetch'
-
+const contentType = 'application/x-www-form-urlencoded;application/json'
 //用户登陆
-const login = (data, success, fail) => {
+const login = (data, success, fail ) => {
     request.postFetch('/api/edo-user/login', data, success, fail);
 }
 //获取登陆验证码
-const captcha =  (data, success, fail) => {
+const captcha =  (data, success, fail ) => {
   request.getFetch('/api/edo-auth/oauth/captcha', data, success, fail);
 } 
 

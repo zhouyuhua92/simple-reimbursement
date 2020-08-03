@@ -1,8 +1,10 @@
 {
   "pages":[
-    "pages/login/login",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/login/login",
+    "pages/my/my",
+    "pages/logs/logs",
+    "pages/approval/approval"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -10,6 +12,23 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
+  "tabBar":{
+    "list": [
+      {
+        "pagePath" : "pages/index/index",
+        "text" : "待办"
+      },
+      {
+        "pagePath" : "pages/my/my",
+        "text" : "我的"
+      }
+    ]
+  },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "van-search": "/miniprogram_npm/vant-weapp/search/index"
+  }
 }

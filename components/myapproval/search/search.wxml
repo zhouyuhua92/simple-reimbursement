@@ -1,0 +1,14 @@
+<!--components/myapproval/search/search.wxml-->
+<view>
+  <van-search
+    value="{{ value }}"
+    placeholder="请输入申请人"
+    shape="round"
+    use-action-slot
+    show-action
+    bind:search="onSearch"
+  >
+    <text slot="action" bind:tap="onCancel">取消</text>
+    <text slot="action"  bind:tap="onClick" >菜单</text>
+  </van-search>
+</view>

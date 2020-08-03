@@ -1,6 +1,7 @@
 //app.js
 
 import log from './requestAPI/login' //登陆相关接口
+import myApproval from './requestAPI/myApproval' //待办相关接口
 import auth from './utils/auth' //存储数据
 App({
   onLoad: function (options) {
@@ -35,7 +36,8 @@ App({
   },
   // 绑定请求
   reqFetch:{
-    log
+    log,
+    myApproval
   },
   //存储数据
   auth,

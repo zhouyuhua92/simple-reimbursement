@@ -4,7 +4,8 @@ import auth from '../utils/auth.js'
 /*
  * 请求头公用配置
 */
-const contentType =  'application/x-www-form-urlencoded'
+//const contentType =  'application/x-www-form-urlencoded;application/json'
+const contentType =  'application/json'
 const header = {
   'Content-Type' : contentType,
   'Authorization' : 'Basic c2FiZXI6c2FiZXJfc2VjcmV0',
@@ -15,9 +16,10 @@ const header = {
  * @param data {Array} 请求数据
  * @param success {Function} 成功后的回调
  * @param fail {Function} 失败后的回调
+ * @param captcha {object} 登陆页面输入验证码
  * @return void
  */
-const postFetch = (url, data, success, fail,captcha = {}) =>{
+const postFetch = (url, data, success, fail, contentType,captcha = {}) =>{
   header['Blade-Auth'] = auth.getToken().access_token ? 'bearer ' + auth.getToken().access_token : ''
   //验证码
   if(captcha.key){
@@ -30,6 +32,16 @@ const postFetch = (url, data, success, fail,captcha = {}) =>{
     data: data,
     header: header,
     success: function (res) {
+      wx.showToast({
+        title: 2,
+      })
+      console.log(res,'res')
+      if(res.data.code ===  401 ){
+        wx.clearStorageSync()
+        wx.reLaunch({
+          url: '/pages/login/login',
+        })
+      }
       // if (res.data.errorCode == -1006) {
       //   wx.reLaunch({
       //     url: '/pages/login/login',
@@ -41,14 +53,18 @@ const postFetch = (url, data, success, fail,captcha = {}) =>{
       //   })
       //   return;
       // }
-
+    
       if (success) {
         success(res.data);
       }
     },
     fail:function (err) {
+      wx.showToast({
+        title: 1,
+      })
       console.log(err)
     }
+
   })
 }
 /*
@@ -68,6 +84,13 @@ const getFetch = (url, data, success, fail) => {
       header: header,
 
       success: function (res) {
+        console.log(res,'res')
+      if(res.data.code ===  401 ){
+        wx.clearStorageSync()
+        wx.reLaunch({
+          url: '/pages/login/login',
+        })
+      }
         // if (res.data.errorCode == -1006) {
         //   wx.reLaunch({
         //     url: '/pages/login/login',
@@ -85,6 +108,8 @@ const getFetch = (url, data, success, fail) => {
       }
     })
 };
+
+
 module.exports = {
   postFetch,
   getFetch

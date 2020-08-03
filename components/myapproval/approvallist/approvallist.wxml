@@ -1,0 +1,18 @@
+<!--components/myapproval/approvalList/approvallist.wxml-->
+<view>
+  <Search></Search>
+  <view>
+    <view 
+    wx:for="{{ arrList }}" 
+    wx:key="id"
+    > 
+      <view class="listBox">
+        <view class="nameRow">
+          <view class="nameRow">
+              
+          </view> 
+        </view> 
+      </view>
+    </view>
+  </view>
+</view>
