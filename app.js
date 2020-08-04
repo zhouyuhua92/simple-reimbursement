@@ -3,7 +3,11 @@
 import log from './requestAPI/login' //登陆相关接口
 import myApproval from './requestAPI/myApproval' //待办相关接口
 import auth from './utils/auth' //存储数据
+import util from './utils/util' //工具类
 App({
+  data: {
+    valueInput:'app'
+  },
   onLoad: function (options) {
     
   },
@@ -41,6 +45,8 @@ App({
   },
   //存储数据
   auth,
+  //工具类
+  util,
   globalData: {
     userInfo: null
   }

@@ -1,5 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-  <Tabs></Tabs>
+  <Tabs id="Tabs"></Tabs>
   
 </view>

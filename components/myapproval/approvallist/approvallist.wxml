@@ -1,18 +1,44 @@
 <!--components/myapproval/approvalList/approvallist.wxml-->
-<view>
-  <Search></Search>
-  <view>
+  <wxs src="../../../utils/filter.wxs" module="filter" />
+  <Search bind:search="search" id="Search"></Search>
+  <view class="approvalView">
     <view 
     wx:for="{{ arrList }}" 
     wx:key="id"
+    class="approvalRow"
     > 
       <view class="listBox">
         <view class="nameRow">
-          <view class="nameRow">
-              
+          <view class="one_txt_cut name">
+              <checkbox class="cb" color="#3D709B"/>
+              <van-icon name="manager" size="50rpx" color="#3D709B"/>
+              <text class="textShow">{{item.applyName}}<text style="color:#5E9CE8">的</text><text style="font-size:38rpx">{{item.orderTypeName}}</text></text>
           </view> 
         </view> 
+        <view class="content">
+            <view class="one_txt_cut" style="margin-top: 12rpx"><text>单据编码</text>{{item.orderCode}}</view>
+            <view class="one_txt_cut"><text>任务状态 </text>{{item.taskStatusName}} </view>
+            <view class="one_txt_cut"><text>出账公司 </text>{{item.enterpriseName}} </view>
+            <view class="one_txt_cut"><text>费用项目 </text>{{item.costName}}</view>
+            <view class="one_txt_cut"><text>项目名称 </text>{{item.projectName}} </view>
+            <view class="one_txt_cut"><text>预算占用部门 </text>{{item.costOrgName}} </view>
+            
+            <!--              申请金额-->
+            <view class="one_txt_cut"  wx:if="{{item.orderType==='sqyb'|| item.orderType=='sqcl'|| item.orderType=='jk'|| item.orderType=='hk'|| item.orderType=='yf'}}">
+           
+              <text>金 额 </text><text style="color:#5E9CE8"> ¥ {{filter.tableNumbuerSF(item.applyAmount)}}</text></view>
+            <!--              本次付款金额-->
+            <view class="one_txt_cut" wx:else><text>金 额 </text> <text style="color:#5E9CE8">¥ {{filter.tableNumbuerSF(item.payAmount)}}</text>
+            </view>
+            <view class="one_txt_cut"><text>申请日期 </text> {{filter.dateFormatYMD(item.applyDate)}}</view>
+        </view>
+        <view class="other">
+           <view class="label-box" style="margin-top: .3rem;"><text class="label">申请事由</text>{{filter.html_decode(item.remark)}}</view>
+         </view>
       </view>
     </view>
+    <view class="finished">
+      <text wx:if="{{finished}}">没有更多了</text>
+    </view>
   </view>
-</view>
+

@@ -53,12 +53,22 @@ Component({
     myLaunchArr: [],//我的发起列表集合
     pendingApproval: [],//待审批列表集合
     approval: [],//已审批列表集合
+    total1:0,//我的发起total
+    total2:0,//已审批total
+    total3:0,//待审批total
+    finished1:false,//我的发起最底部
+    finished2:false,//已审批最底部
+    finished3:false,//待审批最底部
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    huanghaili(){
+      
+      this.triggerEvent("huanghaili")
+    },
     //切换tab
     onChangeTabs(event) {
       switch(event.detail.index) {
@@ -82,25 +92,33 @@ Component({
             activeName: ''
            })
       } 
-      //切换tabs时 清空之前的数据后在请求接口
-      this.setData({
-        myLaunchArr:[],
-        pendingApproval:[],
-        approval:[],
-      },()=>{
-        this.onload()
-      })
+      this.initialization()//切换tabs时初始化部分数据
+     
     },
     //获取列表数据
     onload(){
+      
       //我的发起
       if(this.data.activeName == 'myLaunch'){
+        if(this.data.finished1) return //如果是最底部不在调用接口
+        this.setData({
+          'formInline.current': this.data.formInline.current1
+        })
         app.reqFetch.myApproval.searchStartPage(this.data.formInline,res =>{
           if(res.code === 200){
             let data = res.data.records
+            this.setData({total1:res.data.total})
             this.setData({
-              myLaunchArr:data,...this.data.myLaunchArr
+              myLaunchArr:[...this.data.myLaunchArr,...data]
             })
+            this.setData({
+              'formInline.current1': this.data.formInline.current + 1
+            })
+            if(this.data.myLaunchArr.length >= this.data.total1){
+                this.setData({
+                  finished1: true
+                })
+            }
           }
         },fail =>{
           console.log('err:',fail)
@@ -108,33 +126,121 @@ Component({
       }else 
       //已审批
       if(this.data.activeName == 'myApprovalOK'){
+        if(this.data.finished2) return //如果是最底部不在调用接口
+        this.setData({
+          'formInline.current': this.data.formInline.current2
+        })
         app.reqFetch.myApproval.searchApprovedPage(this.data.formInline,res =>{
           if(res.code === 200){
             let data = res.data.records
+            this.setData({total2:res.data.total})
             this.setData({
-              approval:data,...this.data.approval
+              approval:[...this.data.approval,...data]
             })
+            this.setData({
+              'formInline.current2': this.data.formInline.current + 1
+            })
+            if(this.data.approval.length >= this.data.total2){
+                this.setData({
+                  finished2: true
+                })
+            }
+          
           }
         },fail =>{
-       
           console.log('err:',fail)
         })
       }else
       //待审批
        if(this.data.activeName == 'myApprovalNo'){
+        if(this.data.finished3) return //如果是最底部不在调用接口
+        this.setData({
+          'formInline.current': this.data.formInline.current3
+        })
         app.reqFetch.myApproval.searchWaitApprovePage(this.data.formInline,res =>{
           if(res.code === 200){
             let data = res.data.records
+            this.setData({total3:res.data.total})
             this.setData({
-              pendingApproval:data,...this.data.pendingApproval
+              pendingApproval:[...this.data.pendingApproval,...data]
             })
-            console.log(this.data.pendingApproval)
+            this.setData({
+              'formInline.current3': this.data.formInline.current + 1
+            })
+            if(this.data.pendingApproval.length >= this.data.total3){
+                this.setData({
+                  finished3: true
+                })
+            }
           }
         },fail =>{
-       
           console.log('err:',fail)
         })
       }
+      this.triggerEvent("onload")
+    },
+    //搜索
+    searchList(e){
+      let p = e ? e.detail.params.detail.params : ''
+      if(p || p === ""){
+        if(this.data.activeName == 'myLaunch'){
+          this.setData({
+            myLaunchArr:[],
+            finished1:false,
+            total1:0,
+            'formInline.applyName' : p,
+            'formInline.current1': 1,
+          },()=>{
+            this.onload()
+          })
+        }
+        if(this.data.activeName == 'myApprovalOK'){
+          this.setData({
+            approval:[],
+            finished2:false,
+            total2:0,
+            'formInline.applyName' : p,
+            'formInline.current2': 1,
+          },()=>{
+            this.onload()
+          })
+        }
+        if(this.data.activeName == 'myApprovalNo'){
+          this.setData({
+            pendingApproval:[],
+            finished3:false,
+            total3:0,
+            'formInline.applyName' : p,
+            'formInline.current3': 1,
+          },()=>{
+            this.onload()
+          })
+        }
+        
+       
+      }
+    },
+    //初始化
+    initialization(){
+      this.setData({
+        myLaunchArr:[],
+        pendingApproval:[],
+        approval:[],
+        finished1:false,
+        finished2:false,
+        finished3:false,
+        total1:0,
+        total2:0,
+        total3:0,
+        'formInline.current1': 1,
+        'formInline.current2': 1,
+        'formInline.current3': 1,
+      },()=>{
+        console.log(this.selectComponent('.Approvallist'))
+        //调用子组件方法
+        this.selectComponent('.Approvallist').cancalApproval()
+        this.onload()
+      })
     },
   }
 })

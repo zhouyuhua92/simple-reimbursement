@@ -1,7 +1,10 @@
 /**app.wxss**/
+page{
+  height: 100%;
+}
 .container {
   height: 100%;
- 
+  background-color: #ebedf0;
 } 
 
 .fl{
@@ -11,5 +14,10 @@
   float: right;
 }
 
-
+/*单行溢出*/
+.one_txt_cut {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 

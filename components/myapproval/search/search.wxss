@@ -1,1 +1,36 @@
 /* components/myapproval/search/search.wxss */
+
+.searchBox{
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  padding: 20rpx 30rpx 0rpx 30rpx;
+}
+.searchBox input{
+  width: 65%;
+  height: 64rpx;
+  border: 1rpx #f7f8fa solid;
+  background-color: #f7f8fa;
+  border-radius: 26rpx;
+  padding-left: 22rpx;
+}
+.searchBox input[placeholder]{
+  font-size: 32rpx;
+  color: #333;
+}
+.searchBox text{
+  display: inline-block;
+  font-size: 32rpx;
+  color: #333;
+  line-height: 70rpx;
+  margin-left: 20rpx;
+}
+.searchBox image{
+display: inline-block;
+ width: 90rpx;
+ height: 76rpx;
+ margin-left: 25rpx;
+} 

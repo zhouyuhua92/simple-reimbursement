@@ -1,6 +1,13 @@
 <!--components/myapproval/search/search.wxml-->
-<view>
-  <van-search
+<view class="searchBox">
+   <input placeholder="请输入申请人" value="{{ value }}" bindinput='watchValue'/>
+   <view >
+      <text bindtap="cancal">取消</text>
+   </view>
+    <view >
+      <image src="../../../image/search_search.png"  mode="scaleToFill"></image>
+   </view>
+  <!-- <van-search
     value="{{ value }}"
     placeholder="请输入申请人"
     shape="round"
@@ -10,5 +17,5 @@
   >
     <text slot="action" bind:tap="onCancel">取消</text>
     <text slot="action"  bind:tap="onClick" >菜单</text>
-  </van-search>
+  </van-search> -->
 </view>

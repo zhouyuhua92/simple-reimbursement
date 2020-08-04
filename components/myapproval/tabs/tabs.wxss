@@ -1,1 +1,12 @@
 /* components/myapproval/tabs/tabs.wxss */
+.van-tab--active{
+  background-color: yellow;
+}
+.a{
+  position: fixed;
+  top: 0;
+}
+.van-tab--active{
+  background: #296893;
+
+}

@@ -7,7 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: ''
+    canIUse: '',
   },
   
   //事件处理函数
@@ -69,4 +69,9 @@ Page({
   //     hasUserInfo: true
   //   })
   // }
+  onReachBottom(){
+    //调用子组件方法
+    this.selectComponent('#Tabs').onload()
+  }
+
 })

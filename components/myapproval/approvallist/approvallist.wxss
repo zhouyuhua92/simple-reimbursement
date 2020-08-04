@@ -1,1 +1,74 @@
 /* components/myapproval/approvalList/approvallist.wxss */
+.approvalView{
+  margin-top: 105rpx;
+  padding-top: 20rpx;
+}
+.approvalRow{
+  background: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #F3F3F3;
+}
+.listBox {
+  margin-bottom: 10rpx;
+  border: 2rpx solid #F3F3F3;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  box-shadow: 3rpx 3rpx 3rpx #e4e4e4;
+}
+
+.listBox view {
+  color: #323233;
+  font-size: 32rpx;
+  line-height: 46rpx;
+}
+
+.listBox text {
+  color: #9D9D9D;
+  font-size: 30rpx;
+  width: 180rpx;
+  display: inline-block;
+  text-align: left;
+  padding-right: 10rpx;
+}
+
+.listBox .nameRow {
+  border-bottom: 1rpx solid #F3F3F3;
+  line-height: 26rpx;
+ 
+}
+.listBox .nameRow text{
+ width: 22rpx;
+ font-size: 34rpx;
+ color: #333;
+}
+.listBox .nameRow .textShow{
+  line-height: 20rpx;
+  text-align: left;
+  display: inline;
+  margin-left: 10rpx;
+  font-size: 36rpx;
+}
+.listBox .nameRow .name {
+  line-height: 2rpx;
+  font-size: 30rpx;
+}
+.listBox .other {
+  border-top: 2rpx solid #F3F3F3;
+}
+.one_txt_cut {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cb{
+  transform: scale(0.8,0.8);
+}
+.finished{
+  width: 100%;
+  text-align: center;
+  font-size: 32rpx;
+  color: #9D9D9D;
+  margin-top: 26rpx;
+  margin-bottom: 26rpx;
+}

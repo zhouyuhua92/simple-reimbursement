@@ -18,12 +18,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.reqFetch.log.captcha({},res =>{
-      this.setData({
-        key:res.key,
-        image:res.image
-      })
-  })
+    //获取验证码 暂时隐藏
+  //   app.reqFetch.log.captcha({},res =>{
+  //     this.setData({
+  //       key:res.key,
+  //       image:res.image
+  //     })
+  // })
     if (app.auth.getToken() && app.auth.getUser().id) {
       wx.reLaunch({
         url: '/pages/index/index'
@@ -50,13 +51,14 @@ Page({
       })
       return;
     }
-    if (this.data.code === '') {
-      wx.showToast({
-        title: '请输入验证码',
-        icon: 'none'
-      })
-      return;
-    }
+    //获取验证码 暂时隐藏
+    // if (this.data.code === '') {
+    //   wx.showToast({
+    //     title: '请输入验证码',
+    //     icon: 'none'
+    //   })
+    //   return;
+    // }
     wx.showLoading({
       title: '正在登陆中',
     })
@@ -65,13 +67,14 @@ Page({
       password: this.data.password,
       
     }
-    let captcha = {
-      key: this.data.key,
-      code: this.data.code,
-    }
+    //获取验证码 暂时隐藏
+    // let captcha = {
+    //   key: this.data.key,
+    //   code: this.data.code,
+    // }
     app.reqFetch.log.login(p, res =>{
       console.log(res)
-        this.getToken(p,captcha)
+        this.getToken(p)
       
     }, fail =>{
       wx.hideLoading();
@@ -95,7 +98,9 @@ Page({
   }, fail =>{
       wx.hideLoading();
       console.log(fail)
-  },captcha)
+    }//,captcha//获取验证码 暂时隐藏
+  )
+  
 },
 
 //获取用户信息

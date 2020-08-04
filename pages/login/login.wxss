@@ -52,7 +52,7 @@
   text-align: center;
   font-size: 26rpx;
 }
-.logo_txt{ color: #1989fa; font-size: 40rpx; font-weight: bold; font-family: "微软雅黑"}
+.logo_txt{ color: #3D709B; font-size: 50rpx; font-weight: bold; font-family: "微软雅黑"}
 .phone-placeholder {
   color: #999;
   font-size: 36rpx;
@@ -69,8 +69,8 @@
 }
 
 .submit-btn {
-  background-image: -webkit-linear-gradient(90deg, #f15959 0%, #f13a3a 100%), -webkit-linear-gradient(#fff, #fff);
-  background-image: linear-gradient(90deg, #1989fa 0%, #1989fa 100%), linear-gradient(#fff, #fff);
+  background-image: -webkit-linear-gradient(90deg, #3D709B 0%, #3D709B 100%), -webkit-linear-gradient(#fff, #fff);
+  background-image: linear-gradient(90deg, #3D709B 0%, #3D709B 100%), linear-gradient(#fff, #fff);
   box-shadow: 0 7rpx 30rpxfont-s 0 rgba(255, 61, 2, 0.2);
   border-radius: 44rpx;
   font-size: 32rpx;

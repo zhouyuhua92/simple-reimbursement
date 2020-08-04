@@ -4,13 +4,19 @@ import auth from '../utils/auth.js'
 /*
  * 请求头公用配置
 */
-//const contentType =  'application/x-www-form-urlencoded;application/json'
-const contentType =  'application/json'
+const contentType =  'application/json;charset=UTF-8'
 const header = {
   'Content-Type' : contentType,
   'Authorization' : 'Basic c2FiZXI6c2FiZXJfc2VjcmV0',
 }
 /*
+ * 超时时间配置
+*/
+const timeout = 600000
+/*
+
+
+
  * 通用POST请求封装
  * @param url {String} 相对地址
  * @param data {Array} 请求数据
@@ -31,11 +37,8 @@ const postFetch = (url, data, success, fail, contentType,captcha = {}) =>{
     method: 'POST',
     data: data,
     header: header,
+    timeout: timeout,
     success: function (res) {
-      wx.showToast({
-        title: 2,
-      })
-      console.log(res,'res')
       if(res.data.code ===  401 ){
         wx.clearStorageSync()
         wx.reLaunch({
@@ -59,9 +62,6 @@ const postFetch = (url, data, success, fail, contentType,captcha = {}) =>{
       }
     },
     fail:function (err) {
-      wx.showToast({
-        title: 1,
-      })
       console.log(err)
     }
 
@@ -82,7 +82,7 @@ const getFetch = (url, data, success, fail) => {
       method: 'GET',
       data: data,
       header: header,
-
+      timeout: timeout,
       success: function (res) {
         console.log(res,'res')
       if(res.data.code ===  401 ){

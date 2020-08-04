@@ -1,0 +1,51 @@
+
+//科学计数法格式化和千分位格式化,并返回两位小数
+var tableNumbuerSF = function(val){
+  var str = parseFloat(val)
+  if (!str || isNaN(str) || str < 0) {
+    return '0.00'
+  } else {
+   return numbuerS(val)
+  }
+}
+
+var numbuerS = function (num, number = 2, isThousands = true ) {
+  num = parseFloat(num).toFixed(2)
+  var splits=[],res=[];
+	var splits = num.toString().split(".");
+	splits[0].split("").reverse().map(function(item,i){
+		if(i%3 == 0 && i!=0){ res.push(","); }
+		res.push(item);
+  });
+  var c = res.reverse().join("")+(splits.length>1 ? "."+ splits[1] : "")
+	return c;
+}
+  // 格式化日期
+  var dateFormatYMD = function (val) {
+    var info = ''
+    if (val) {
+      info = val.slice(0, 10)
+    }
+    return info
+  }
+
+  //特殊字符回显转换
+ var html_decode = function (str) {
+    var s = ''
+    if (!str || str.length === 0) return ''
+    s = str.replace('/&amp;/g', '&')
+    s = s.replace('/&lt;/g', '<')
+    s = s.replace('/&gt;/g', '>')
+    s = s.replace('/&nbsp;/g', ' ')
+    s = s.replace('/nbsp;/g', ' ')
+    s = s.replace('/&amp;/g', ' ')
+    s = s.replace('/&#39;/g', '\'')
+    s = s.replace('/&quot;/g', '"')
+    s = s.replace('/<br>/g', '\n')
+    return s
+  }
+module.exports = {
+  tableNumbuerSF : tableNumbuerSF,
+  dateFormatYMD: dateFormatYMD,
+  html_decode: html_decode
+}

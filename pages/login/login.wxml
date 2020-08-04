@@ -18,7 +18,7 @@
         <input placeholder='请输入密码' cursor-spacing="120" value='{{password}}' type='password' class='phone-text' placeholder-class='phone-placeholder' bindinput='handleInput2'></input>
       </view>
     </view>
-     <view class='phone-box'>
+     <!-- <view class='phone-box'>
       <text class='iconfont iconziyuanxhdpi1 icon-color'></text>
       <view class='phone-wrapper login-code'>
         <input placeholder='请输入验证码' cursor-spacing="120" value='{{code}}'  class='phone-text fl' placeholder-class='phone-placeholder' bindinput='handleInput3'></input>
@@ -26,8 +26,9 @@
         <image src="{{image}}" mode="aspectFill" class='login-code'> 
         </image>
         
-      </view>
-    </view>
+      </view> 
+    </view>-->
+    
   </view>
   <view class='submit-wrapper'>
     <button class='submit-btn' bindtap='handleSubmit'>登录</button>

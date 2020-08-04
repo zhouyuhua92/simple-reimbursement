@@ -2,5 +2,5 @@
   "usingComponents": {
     "Tabs" : "../../components/myapproval/tabs/tabs"
   },
-  "navigationBarTitleText": "待办"
+  "navigationBarTitleText": "我的待办"
 }
