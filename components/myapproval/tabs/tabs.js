@@ -106,6 +106,7 @@ Component({
         this.setData({
           'formInline.current': this.data.formInline.current1
         })
+      
         app.reqFetch.myApproval.searchStartPage(this.data.formInline,res =>{
           wx.hideLoading()
           if(res.code === 200){

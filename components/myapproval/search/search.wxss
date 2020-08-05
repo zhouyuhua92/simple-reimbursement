@@ -70,7 +70,7 @@ display: inline-block;
 }
 .timeStyle{
   width: 680rpx;
-  height: 890rpx;
+  height: 990rpx;
   position: relative;
 }
 .search-btn{

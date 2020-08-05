@@ -1,5 +1,5 @@
 // components/myapproval/approvalList/approvallist.js
-
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -28,6 +28,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //  app.reqFetch.myApproval.batchCompleteTask
+    //审批  列表
+    approval(){
+      app.reqFetch.myApproval.batchCompleteTask()
+    },
     //q多选
     checkboxChange(e){
       let id = e.currentTarget.dataset['item']
@@ -42,7 +47,6 @@ Component({
    cancalApproval(){
     this.triggerEvent("cancalApproval")
     this.selectComponent('#Search').cancal()
-   
    },
   },
   

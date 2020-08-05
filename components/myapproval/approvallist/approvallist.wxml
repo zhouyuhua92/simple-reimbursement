@@ -43,7 +43,7 @@
       <text wx:if="{{finished}}">没有更多了</text>
     </view>
      <view class="search-btn" wx:if="{{type === 'pendingApproval'}}">
-      <button bindtap="cancal">审批</button>
+      <button bindtap="approval">审批</button>
     </view>
    
   </view>
