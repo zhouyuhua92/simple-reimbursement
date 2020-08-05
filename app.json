@@ -14,13 +14,16 @@
     "onReachBottomDistance": 50
   },
 
-  "style": "v2",
+
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
-    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
-    "van-search": "/miniprogram_npm/vant-weapp/search/index",
-    "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+    "van-tab": "/vant-weapp/tab/index",
+    "van-tabs": "/vant-weapp/tabs/index",
+    "van-search": "/vant-weapp/search/index",
+    "van-icon": "/vant-weapp/icon/index",
+    "van-popup": "/vant-weapp/popup/index",
+    "van-field": "/vant-weapp/field/index",
+    "van-datetime-picker": "/vant-weapp/datetime-picker/index"
   }
 }
 

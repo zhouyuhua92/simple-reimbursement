@@ -11,6 +11,9 @@ Component({
     finished: { 
       type: Boolean, 
     },
+    type:{
+      type: String
+    }
    
   },
 
@@ -25,13 +28,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    //q多选
+    checkboxChange(e){
+      let id = e.currentTarget.dataset['item']
+      console.log(e.detail.value)
+      
+    },
     search(e){
       // 自定义一个事件，并且传值
       this.triggerEvent('searchList',{params: e },{})
       
    },
    cancalApproval(){
-     console.log(123)
     this.triggerEvent("cancalApproval")
     this.selectComponent('#Search').cancal()
    

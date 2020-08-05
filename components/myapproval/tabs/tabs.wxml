@@ -2,13 +2,13 @@
 <view> 
   <van-tabs active="{{ active }}" bind:change="onChangeTabs" sticky color="#3D709B">
     <van-tab title="我的发起" name="myLaunch">
-      <Approvallist arrList="{{myLaunchArr}}" finished="{{finished1}}" bind:searchList="searchList" class="Approvallist"></Approvallist>
+      <Approvallist arrList="{{myLaunchArr}}" finished="{{finished1}}" bind:searchList="searchList" class="Approvallist" type="myLaunch"></Approvallist>
     </van-tab>
     <van-tab title="已审批" name="myApprovalOK">
-      <Approvallist arrList="{{approval}}" finished="{{finished2}}" bind:searchList="searchList" class="Approvallist"></Approvallist>
+      <Approvallist arrList="{{approval}}" finished="{{finished2}}" bind:searchList="searchList" class="Approvallist"type="approval"></Approvallist>
     </van-tab>
     <van-tab title="待审批" name="myApprovalNo">
-      <Approvallist arrList="{{pendingApproval}}" finished="{{finished3}}" bind:searchList="searchList" class="Approvallist"></Approvallist>
+      <Approvallist arrList="{{pendingApproval}}" finished="{{finished3}}" bind:searchList="searchList" class="Approvallist" type="pendingApproval"></Approvallist>
     </van-tab>
   </van-tabs>
 </view>

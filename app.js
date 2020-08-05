@@ -6,7 +6,19 @@ import auth from './utils/auth' //存储数据
 import util from './utils/util' //工具类
 App({
   data: {
-    valueInput:'app'
+    valueInput:'app',
+       //报销搜索栏单据类型
+       orderTypeList: [
+        {name: '一般费用申请', orderType: 'sqyb'},
+        {name: '差旅申请', orderType: 'sqcl'},
+        {name: '一般费用报销', orderType: 'bxyb'},
+        {name: '一般费用快速报销', orderType: 'bxybks'},
+        {name: '差旅费用报销', orderType: 'bxcl'},
+        {name: '差旅费用快速报销', orderType: 'bxclks'},
+        {name: '借款', orderType: 'jk'},
+        {name: '还款', orderType: 'hk'},
+        {name: '预付款', orderType: 'yfk'},
+      ],
   },
   onLoad: function (options) {
     

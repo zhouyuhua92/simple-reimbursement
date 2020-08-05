@@ -1,21 +1,106 @@
 <!--components/myapproval/search/search.wxml-->
 <view class="searchBox">
-   <input placeholder="请输入申请人" value="{{ value }}" bindinput='watchValue'/>
-   <view >
-      <text bindtap="cancal">取消</text>
-   </view>
-    <view >
-      <image src="../../../image/search_search.png"  mode="scaleToFill"></image>
-   </view>
-  <!-- <van-search
-    value="{{ value }}"
-    placeholder="请输入申请人"
-    shape="round"
-    use-action-slot
-    show-action
-    bind:search="onSearch"
-  >
-    <text slot="action" bind:tap="onCancel">取消</text>
-    <text slot="action"  bind:tap="onClick" >菜单</text>
-  </van-search> -->
+	<input placeholder="请输入申请人" value="{{ from.applyName }}" bindinput='watchValue' />
+	<view>
+		<text bindtap="cancal">取消</text>
+	</view>
+	<view bindtap="showPopup">
+		<image src="../../../image/search_search.png" mode="scaleToFill"></image>
+	</view>
+	<van-popup show="{{ show }}" bind:close="onClose" round position="right" closeable :close-on-popstate="true" class="popupStyle">
+     <van-field
+      value="{{ from.orderTypeName }}"
+      label="单据类型"
+      placeholder="请选择"
+      data-id="orderTypeName"
+      readonly
+      bindtap="onActionShow"
+    />
+     <van-field
+      value="{{ from.orderCode }}"
+      label="单据编码"
+      placeholder="单据编码"
+      data-id="orderCode"
+      bind:input='watchValue'
+      clearable
+    />
+     <van-field
+      value="{{ from.applyName }}"
+      label="申请人"
+      placeholder="申请人"
+      data-id="applyName"
+      bind:input='watchValue'
+      clearable
+    />
+     <van-field
+      value="{{ from.costOrgName }}"
+      label="预算占用部门"
+      placeholder="预算占用部门"
+       data-id="costOrgName"
+       bind:input='watchValue'
+      clearable
+    />
+     <van-field
+      value="{{ from.enterpriseName }}"
+      label="出账公司"
+      placeholder="出账公司"
+       data-id="enterpriseName"
+       bind:input='watchValue'
+      clearable
+    />
+     <van-field
+      value="{{ from.projectName }}"
+      label="项目名称"
+      placeholder="项目名称"
+      data-id="projectName"
+      bind:input='watchValue'
+      clearable
+    />
+     <van-field
+      value="{{ from.queryTimeStart }}"
+      label="申请开始日期"
+      placeholder="申请开始日期"
+      readonly
+      data-id="queryTimeStart"
+      bindtap="onTimeShow"
+    />
+      <van-field
+      value="{{ from.queryTimeEnd }}"
+      label="申请结束日期"
+      placeholder="申请结束日期"
+      readonly
+      data-id="queryTimeEnd"
+      bindtap="onTimeShow"
+    />
+    <view class="search-btn">
+      <button bindtap="cancal">重置</button>
+      <button bindtap="submit">查询</button>
+    </view>
+  </van-popup>
+  <!-- 单据类型 -->
+  	<van-popup show="{{ actionShow }}" bind:close="onActionClose" round position="right" closeable :close-on-popstate="true" class="popupStyle"  overlay-style="opacity: 0">
+    <view class="actionsStyle">
+      <van-icon name="cross" class="cross" size="50rpx" bindtap="onActionClose"/>
+      <view>请选择单据类型</view>
+      <view 
+        wx:for="{{ actions }}" 
+        wx:key="orderType"
+        bindtap="onActionSelect"
+        data-name="{{item}}"
+      >{{item.name}}
+      </view>
+    </view>
+  </van-popup>
+  <!-- 申请日期 -->
+  	<van-popup show="{{ timeShow }}" bind:close="onTimeClose" round position="right" closeable :close-on-popstate="true"   overlay-style="opacity: 0">
+    <view class="timeStyle">
+      <van-datetime-picker
+        type="date"
+        value="{{ currentDate }}"
+        bind:confirm="onTimeConfirm"
+        bind:cancel="onTimeClose"
+        formatter="{{ formatter }}"
+    />
+    </view>
+  </van-popup>
 </view>

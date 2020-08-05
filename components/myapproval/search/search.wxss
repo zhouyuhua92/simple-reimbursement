@@ -34,3 +34,58 @@ display: inline-block;
  height: 76rpx;
  margin-left: 25rpx;
 } 
+
+.popupStyle{
+  border-radius: 20rpx;
+}
+
+.popupStyle input{
+  width: 90%;
+  height: 44rpx;
+  border: 1rpx #fff solid;
+  background-color:#fff;
+  border-radius: 26rpx;
+  padding-left: 22rpx;
+}
+.popupStyle > view{
+  padding:10rpx;
+  border-radius: 40rpx 0rpx 0rpx 40rpx;
+  color: #ccc;
+} 
+.actionsStyle {
+  width: 680rpx;
+  height: 990rpx;
+  position: relative;
+}
+.actionsStyle > view{
+  color: #333;
+  padding:25rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #F3F3F3;
+}
+.actionsStyle  .cross{
+ position: absolute;
+ right: 30rpx;
+ top:20rpx
+}
+.timeStyle{
+  width: 680rpx;
+  height: 890rpx;
+  position: relative;
+}
+.search-btn{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.search-btn button{
+  border: 1rpx solid #3D709B;
+  background-color: #3D709B;
+  color: #fff;
+  border-radius: 60rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding:0rpx 80rpx;
+  font-size: 34rpx;
+}

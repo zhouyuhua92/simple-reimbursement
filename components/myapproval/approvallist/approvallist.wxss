@@ -34,8 +34,8 @@
 
 .listBox .nameRow {
   border-bottom: 1rpx solid #F3F3F3;
-  line-height: 26rpx;
- 
+  line-height: 16rpx;
+  height: 70rpx;
 }
 .listBox .nameRow text{
  width: 22rpx;
@@ -50,7 +50,6 @@
   font-size: 36rpx;
 }
 .listBox .nameRow .name {
-  line-height: 2rpx;
   font-size: 30rpx;
 }
 .listBox .other {
@@ -70,5 +69,24 @@
   font-size: 32rpx;
   color: #9D9D9D;
   margin-top: 26rpx;
-  margin-bottom: 26rpx;
+  margin-bottom: 40rpx;
+}
+.search-btn{
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+  padding: 20rpx 0rpx;
+}
+.search-btn button{
+  border: 1rpx solid #3D709B;
+  background-color: #3D709B;
+  color: #fff;
+  border-radius: 60rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding:0rpx 100rpx;
+  font-size: 34rpx;
 }

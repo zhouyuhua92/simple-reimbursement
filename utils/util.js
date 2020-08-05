@@ -8,7 +8,17 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
+//时间戳转换方法    date:时间戳数字
+const formatDate = (date)=>  {
+  var date = new Date(date);
+  var YY = date.getFullYear() + '-';
+  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+  var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+  var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+  return YY + MM + DD ;
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -42,4 +52,5 @@ const numbuerS = function (val, number = 2, isThousands = true ) {
 module.exports = {
   formatTime: formatTime,
   numbuerS,
+  formatDate
 }

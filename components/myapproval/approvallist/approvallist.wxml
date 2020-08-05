@@ -2,6 +2,7 @@
   <wxs src="../../../utils/filter.wxs" module="filter" />
   <Search bind:search="search" id="Search"></Search>
   <view class="approvalView">
+  <checkbox-group bindchange="checkboxChange">
     <view 
     wx:for="{{ arrList }}" 
     wx:key="id"
@@ -10,7 +11,7 @@
       <view class="listBox">
         <view class="nameRow">
           <view class="one_txt_cut name">
-              <checkbox class="cb" color="#3D709B"/>
+              <checkbox class="cb" color="#3D709B"   value="{{item.id}}" wx:if="{{type === 'pendingApproval'}}"/>
               <van-icon name="manager" size="50rpx" color="#3D709B"/>
               <text class="textShow">{{item.applyName}}<text style="color:#5E9CE8">的</text><text style="font-size:38rpx">{{item.orderTypeName}}</text></text>
           </view> 
@@ -37,8 +38,13 @@
          </view>
       </view>
     </view>
+     </checkbox-group>
     <view class="finished">
       <text wx:if="{{finished}}">没有更多了</text>
     </view>
+     <view class="search-btn" wx:if="{{type === 'pendingApproval'}}">
+      <button bindtap="cancal">审批</button>
+    </view>
+   
   </view>
 

@@ -59,6 +59,7 @@ Component({
     finished1:false,//我的发起最底部
     finished2:false,//已审批最底部
     finished3:false,//待审批最底部
+
   },
 
   /**
@@ -66,7 +67,6 @@ Component({
    */
   methods: {
     huanghaili(){
-      
       this.triggerEvent("huanghaili")
     },
     //切换tab
@@ -97,7 +97,9 @@ Component({
     },
     //获取列表数据
     onload(){
-      
+      wx.showLoading({
+        title: '加载中',
+      })
       //我的发起
       if(this.data.activeName == 'myLaunch'){
         if(this.data.finished1) return //如果是最底部不在调用接口
@@ -105,6 +107,7 @@ Component({
           'formInline.current': this.data.formInline.current1
         })
         app.reqFetch.myApproval.searchStartPage(this.data.formInline,res =>{
+          wx.hideLoading()
           if(res.code === 200){
             let data = res.data.records
             this.setData({total1:res.data.total})
@@ -121,6 +124,7 @@ Component({
             }
           }
         },fail =>{
+          wx.hideLoading()
           console.log('err:',fail)
         })
       }else 
@@ -131,6 +135,7 @@ Component({
           'formInline.current': this.data.formInline.current2
         })
         app.reqFetch.myApproval.searchApprovedPage(this.data.formInline,res =>{
+          wx.hideLoading()
           if(res.code === 200){
             let data = res.data.records
             this.setData({total2:res.data.total})
@@ -148,6 +153,7 @@ Component({
           
           }
         },fail =>{
+          wx.hideLoading()
           console.log('err:',fail)
         })
       }else
@@ -158,6 +164,7 @@ Component({
           'formInline.current': this.data.formInline.current3
         })
         app.reqFetch.myApproval.searchWaitApprovePage(this.data.formInline,res =>{
+          wx.hideLoading()
           if(res.code === 200){
             let data = res.data.records
             this.setData({total3:res.data.total})
@@ -174,21 +181,25 @@ Component({
             }
           }
         },fail =>{
+          wx.hideLoading()
           console.log('err:',fail)
         })
+      }else{
+        wx.hideLoading()
       }
       this.triggerEvent("onload")
     },
     //搜索
     searchList(e){
       let p = e ? e.detail.params.detail.params : ''
+      console.log(p)
       if(p || p === ""){
+        this.formatter(p) //参数处理
         if(this.data.activeName == 'myLaunch'){
           this.setData({
             myLaunchArr:[],
             finished1:false,
             total1:0,
-            'formInline.applyName' : p,
             'formInline.current1': 1,
           },()=>{
             this.onload()
@@ -199,7 +210,6 @@ Component({
             approval:[],
             finished2:false,
             total2:0,
-            'formInline.applyName' : p,
             'formInline.current2': 1,
           },()=>{
             this.onload()
@@ -210,7 +220,6 @@ Component({
             pendingApproval:[],
             finished3:false,
             total3:0,
-            'formInline.applyName' : p,
             'formInline.current3': 1,
           },()=>{
             this.onload()
@@ -219,6 +228,22 @@ Component({
         
        
       }
+    },
+    //参数处理
+    formatter(p){
+      this.setData({
+        'formInline.orderType' :  p.orderType,
+        'formInline.orderTypeName' :  p.orderTypeName,
+        'formInline.orderCode' :  p.orderCode,
+        'formInline.applyName' :  p.applyName,
+        'formInline.costOrgName' :  p.costOrgName,
+        'formInline.enterpriseName' :  p.enterpriseName,
+        'formInline.projectName' :  p.projectName,
+        'formInline.queryTimeStart' :  p.queryTimeStart,
+        'formInline.queryTimeEnd' :  p.queryTimeEnd,
+      },()=>{
+        console.log(this.data.formInline)
+      })
     },
     //初始化
     initialization(){
@@ -236,10 +261,9 @@ Component({
         'formInline.current2': 1,
         'formInline.current3': 1,
       },()=>{
-        console.log(this.selectComponent('.Approvallist'))
+        //this.onload()
         //调用子组件方法
-        this.selectComponent('.Approvallist').cancalApproval()
-        this.onload()
+         this.selectComponent('.Approvallist').cancalApproval()
       })
     },
   }
